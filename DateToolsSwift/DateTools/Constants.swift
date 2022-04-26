@@ -24,6 +24,7 @@ public class Constants {
     public static let SecondsInHour: TimeInterval = 3600
     public static let SecondsInMinute: TimeInterval = 60
     public static let MillisecondsInDay: TimeInterval = 86400000
+    public static let TimeZoneGMT: TimeZone = TimeZone(secondsFromGMT: 0)!
     
     public static let AllCalendarUnitFlags: Set<Calendar.Component> = [.year, .quarter, .month, .weekOfYear, .weekOfMonth, .day, .hour, .minute, .second, .era, .weekday, .weekdayOrdinal, .weekOfYear]
 }
