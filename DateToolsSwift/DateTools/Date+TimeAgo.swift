@@ -61,7 +61,8 @@ public extension Date {
     }
     
     func timeAgo(since date:Date, numericDates: Bool = false, numericTimes: Bool = false) -> String {
-        let calendar = NSCalendar.current
+        var calendar = NSCalendar.current
+        calendar.timeZone = Constants.TimeZoneGMT
         let unitFlags = Set<Calendar.Component>([.second,.minute,.hour,.day,.weekOfYear,.month,.year])
         let earliest = self.earlierDate(date)
         let latest = (earliest == self) ? date : self //Should be triple equals, but not extended to Date at this time
@@ -156,7 +157,8 @@ public extension Date {
     
     
     func shortTimeAgo(since date:Date) -> String {
-        let calendar = NSCalendar.current
+        var calendar = NSCalendar.current
+        calendar.timeZone = Constants.TimeZoneGMT
         let unitFlags = Set<Calendar.Component>([.second,.minute,.hour,.day,.weekOfYear,.month,.year])
         let earliest = self.earlierDate(date)
         let latest = (earliest == self) ? date : self //Should pbe triple equals, but not extended to Date at this time
