@@ -24,7 +24,8 @@ public extension Date {
      *
      */
     func component(_ component: Calendar.Component) -> Int {
-		let calendar = Calendar.autoupdatingCurrent
+		var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
 		return calendar.component(component, from: self)
 	}
 	
@@ -38,7 +39,8 @@ public extension Date {
      *
      */
     func ordinality(of smaller: Calendar.Component, in larger: Calendar.Component) -> Int? {
-		let calendar = Calendar.autoupdatingCurrent
+		var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
 		return calendar.ordinality(of: smaller, in: larger, for: self)
 	}
 	
@@ -56,7 +58,8 @@ public extension Date {
      */
     @available(*, deprecated, message: "Calendar component hashes no longer yield relevant values and will always return nil. The function is deprecated and will be removed soon.")
     func unit(of smaller: Calendar.Component, in larger: Calendar.Component) -> Int? {
-		let calendar = Calendar.autoupdatingCurrent
+		var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         var units = 1
         var unitRange: Range<Int>?
         if larger.hashValue < smaller.hashValue {
@@ -225,7 +228,8 @@ public extension Date {
      *  Convenience getter for the date's `daysInMonth` component
      */
     var daysInMonth: Int {
-        let calendar = Calendar.autoupdatingCurrent
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         let days = calendar.range(of: .day, in: .month, for: self)
         return days!.count
     }
@@ -299,7 +303,8 @@ public extension Date {
      *  Determine if date is within the current day
      */
     var isToday: Bool {
-		let calendar = Calendar.autoupdatingCurrent
+		var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
 		return calendar.isDateInToday(self)
 	}
 	
@@ -307,7 +312,8 @@ public extension Date {
      *  Determine if date is within the day tomorrow
      */
     var isTomorrow: Bool {
-		let calendar = Calendar.autoupdatingCurrent
+		var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         return calendar.isDateInTomorrow(self)
 	}
 	
@@ -315,7 +321,8 @@ public extension Date {
      *  Determine if date is within yesterday
      */
     var isYesterday: Bool {
-		let calendar = Calendar.autoupdatingCurrent
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         return calendar.isDateInYesterday(self)
 	}
 	
