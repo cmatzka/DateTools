@@ -126,8 +126,10 @@ public extension Date {
      *  corresponding `TimeChunk` variables
      */
     func add(_ chunk: TimeChunk) -> Date {
-        let calendar = Calendar.autoupdatingCurrent
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         var components = DateComponents()
+        components.timeZone = Constants.TimeZoneGMT
         components.year = chunk.years
         components.month = chunk.months
         components.day = chunk.days + (chunk.weeks*7)
@@ -147,8 +149,10 @@ public extension Date {
      *  corresponding `TimeChunk` variables
      */
     func subtract(_ chunk: TimeChunk) -> Date {
-        let calendar = Calendar.autoupdatingCurrent
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         var components = DateComponents()
+        components.timeZone = Constants.TimeZoneGMT
         components.year = -chunk.years
         components.month = -chunk.months
         components.day = -(chunk.days + (chunk.weeks*7))
