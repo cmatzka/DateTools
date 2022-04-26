@@ -128,7 +128,8 @@ public extension Date {
      *  - returns: True if both paramter dates fall on the same day, false otherwise
      */
     static func isSameDay(date: Date, as compareDate: Date) -> Bool {
-        let calendar = Calendar.autoupdatingCurrent
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.timeZone = Constants.TimeZoneGMT
         var components = calendar.dateComponents([.era, .year, .month, .day], from: date)
         let dateOne = calendar.date(from: components)
         
@@ -264,7 +265,7 @@ public extension Date {
         if (calendar == nil) {
             calendarCopy = Calendar.autoupdatingCurrent
         }
-        
+        calendarCopy?.timeZone = Constants.TimeZoneGMT
         let earliest = earlierDate(date)
         let latest = (earliest == self) ? date : self;
         let multiplier = (earliest == self) ? -1 : 1;
@@ -288,7 +289,7 @@ public extension Date {
         if (calendar == nil) {
             calendarCopy = Calendar.autoupdatingCurrent
         }
-        
+        calendarCopy?.timeZone = Constants.TimeZoneGMT
         let earliest = earlierDate(date)
         let latest = (earliest == self) ? date : self;
         let multiplier = (earliest == self) ? -1 : 1;
@@ -312,7 +313,7 @@ public extension Date {
         if (calendar == nil) {
             calendarCopy = Calendar.autoupdatingCurrent
         }
-        
+        calendarCopy?.timeZone = Constants.TimeZoneGMT
         let earliest = earlierDate(date)
         let latest = (earliest == self) ? date : self;
         let multiplier = (earliest == self) ? -1 : 1;
@@ -336,7 +337,7 @@ public extension Date {
         if (calendar == nil) {
             calendarCopy = Calendar.autoupdatingCurrent
         }
-        
+        calendarCopy?.timeZone = Constants.TimeZoneGMT
         let earliest = earlierDate(date)
         let latest = (earliest == self) ? date : self
         let multiplier = (earliest == self) ? -1 : 1
