@@ -29,14 +29,18 @@ public extension Date {
      */
     init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) {
 		var dateComponents = DateComponents()
+        dateComponents.timeZone = Constants.TimeZoneGMT
 		dateComponents.year = year
 		dateComponents.month = month
 		dateComponents.day = day
 		dateComponents.hour = hour
 		dateComponents.minute = minute
 		dateComponents.second = second
+        
+        var calendar = Calendar.current
+        calendar.timeZone = Constants.TimeZoneGMT
 		
-		guard let date = Calendar.current.date(from: dateComponents) else {
+		guard let date = calendar.date(from: dateComponents) else {
 			self = Date()
 			return
 		}
@@ -67,6 +71,7 @@ public extension Date {
 		dateFormatter.timeStyle = .none;
 		dateFormatter.timeZone = timeZone;
 		dateFormatter.dateFormat = format;
+        dateFormatter.timeZone = Constants.TimeZoneGMT
 		
 		guard let date = dateFormatter.date(from: dateString) else {
 			self = Date()
@@ -83,6 +88,6 @@ public extension Date {
      *  - parameter format: Format style using Apple's date formatting guide
      */
     init (dateString: String, format: String) {
-		self.init(dateString: dateString, format: format, timeZone: TimeZone.autoupdatingCurrent)
+        self.init(dateString: dateString, format: format, timeZone: Constants.TimeZoneGMT)
 	}	
 }
